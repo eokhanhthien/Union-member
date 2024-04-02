@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="p-5">
-    <a href="{{ url()->previous() }}">
+    <a href="{{route('admin.classes.index')}}">
         <button class="btn btn-primary mb-4"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button>
     </a>
 

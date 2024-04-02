@@ -23,6 +23,7 @@ class Background extends Model
         'position_id',
         'image',
         'union_member_id',
+        'phone_number',
     ];
 
 

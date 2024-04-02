@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="p-5">
-    <a href="{{ url()->previous() }}">
+    <a href="{{route('admin.member.index')}}">
         <button class="btn btn-primary mb-4"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button>
     </a>
 
@@ -82,10 +82,6 @@
             <input type="text" name="address" id="address" class="form-control" required>
         </div>
 
-        <div class="form-group col-md-6">
-            <label for="address">Quê quán</label>
-            <input type="text" name="address" id="address" class="form-control" required>
-        </div>
 
         <div class="form-group col-md-6">
             <label for="day_in">Ngày vào đoàn</label>

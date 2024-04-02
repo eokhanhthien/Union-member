@@ -143,11 +143,11 @@ class IndexController extends Controller
     }
     // END Quản lý lớp ========================================================================================================
 
-      // START Quản lý lớp ========================================================================================================
-      public function member(){
-        $classes = Classes::all();
+    // START Quản lý đoàn viên ========================================================================================================
+    public function member(){
+        $members = UnionMember::where('role',2)->get();
 
-        return view('admin.member.index', compact('classes'));
+        return view('admin.member.index', compact('members'));
 
     }
 
@@ -176,6 +176,7 @@ class IndexController extends Controller
         $background->entry_place = $request->entry_place;
         $background->issuance_date = $request->issuance_date;
         $background->class_id = $request->class_id;
+        $background->phone_number = $request->phone_number;
         $background->position_id = 1;
 
         $get_image = $request->image;
@@ -189,27 +190,72 @@ class IndexController extends Controller
 
         $background->save();
 
-        return redirect('/classes')->with('success', 'Thêm mới đoàn viên thành công');
+        return redirect('/member')->with('success', 'Thêm mới đoàn viên thành công');
     }
 
     public function editMember($id){
-        $class = Classes::find($id);
-        $departments = Department::all();
-        return view('admin.member.edit',compact('class','departments'));
+        $member = UnionMember::find($id);
+        $classes = Classes::get();
+        $background = Background::where('union_member_id',$id)->first();
+        return view('admin.member.edit',compact('classes','member','background'));
     }
 
     public function updateMember(Request $request, $id) {
-        $classes = Classes::find($id);
-        $classes->name = $request->name;
-        $classes->department_id = $request->department_id;
-        $classes->save();
-        return redirect('/classes')->with('success', 'Cập nhật lớp thành công');
+        $unionMember = UnionMember::find($id);
+        $unionMember->full_name = $request->full_name;
+        $unionMember->email = $request->email;
+        if($request->password){
+        $unionMember->password = bcrypt($request->password);
+        }
+        $unionMember->role = 2;
+        $unionMember->save();
+
+        $background = Background::where('union_member_id',$id)->first();
+        $background->union_member_id = $unionMember->id;
+        $background->mssv = $request->mssv;
+        $background->full_name = $request->full_name;
+        $background->gender = $request->gender;
+        $background->nation = $request->nation;
+        $background->religion = $request->religion;
+        $background->address = $request->address;
+        $background->day_in = $request->day_in;
+        $background->entry_place = $request->entry_place;
+        $background->issuance_date = $request->issuance_date;
+        $background->class_id = $request->class_id;
+        $background->phone_number = $request->phone_number;
+        $background->position_id = 1;
+
+        $get_image = $request->image;
+        if($get_image){
+            // Bỏ hình ảnh cũ
+            $path_unlink = 'uploads/'.$background->image;
+            if(file_exists($path_unlink)){
+                unlink($path_unlink);
+            }
+            // Thêm mới
+            $path = 'uploads/';
+            $get_name_image = $get_image-> getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image -> getClientOriginalExtension();
+            $get_image->move($path,$new_image);
+            $background->image = $new_image;
+        }
+        $background->save();
+
+
+        return redirect('/member')->with('success', 'Cập nhật đoàn viên thành công');
     }
 
     public function deleteMember($id){
-        $classes = Classes::find($id);
-        $classes->delete();
-        return redirect('/classes')->with('success', 'Xóa lớp thành công');
+        $member = UnionMember::find($id);
+        $background = Background::where('union_member_id',$id)->first();
+        $path_unlink = 'uploads/'.$background->image;
+        if(file_exists($path_unlink)){
+            unlink($path_unlink);
+        }
+        $member->delete();
+        $background->delete();
+        return redirect('/member')->with('success', 'Xóa đoàn viên thành công');
     }
-    // END Quản lý lớp ========================================================================================================
+    // END Quản lý đoàn viên ========================================================================================================
 }

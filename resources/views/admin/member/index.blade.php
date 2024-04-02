@@ -29,21 +29,21 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tên đoàn viên</th>
-                <th scope="col">Chi khoa</th>
+                <th scope="col">Email</th>
                 <th scope="col">Hành động</th>
               </tr>
             </thead>
             <tbody>
-                @foreach ($classes as $class)
+                @foreach ($members as $member)
               <tr>
                 <th scope="row">{{$loop->index + 1}}</th>
-                <td>{{$class->name}}</td>
-                <td>{{ $class->department->name }}</td>
+                <td>{{$member->full_name}}</td>
+                <td>{{ $member->email }}</td>
                 <td>
-                    <a style="text-decoration: none" href="{{route('admin.classes.edit', ['id' => $class->id ])}}">
+                    <a style="text-decoration: none" href="{{route('admin.member.edit', ['id' => $member->id ])}}">
                         <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
                     </a>
-                    <a style="text-decoration: none" href="{{route('admin.classes.delete', ['id' => $class->id ])}}">
+                    <a style="text-decoration: none" href="{{route('admin.member.delete', ['id' => $member->id ])}}">
                         <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </a>
                 </td>

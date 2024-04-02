@@ -3,7 +3,7 @@
 
 
 <div class="p-5">
-    <a href="{{ url()->previous() }}">
+    <a href="{{route('admin.department.index')}}">
         <button class="btn btn-primary mb-4"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button>
     </a>
 <h5>Sửa khoa</h5>
