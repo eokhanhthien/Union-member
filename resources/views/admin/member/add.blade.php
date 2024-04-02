@@ -1,0 +1,113 @@
+@extends('layouts.admin')
+@section('content')
+
+<div class="p-5">
+    <a href="{{ url()->previous() }}">
+        <button class="btn btn-primary mb-4"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button>
+    </a>
+
+<h5>Thêm mới đoàn viên</h5>
+
+<form action="{{route('admin.member.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="image">Ảnh đại diện</label>
+            <input type="file" name="image" id="image" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="name">Họ và tên</label>
+            <input type="text" name="full_name" id="name" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="gender">Giới tính</label>
+            <select id="gender" name="gender" class="form-control">
+                <option value="1">Nam</option>
+                <option value="0">Nữ</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="password">Mật khẩu</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="mssv">Mã số sinh viên</label>
+            <input type="text" name="mssv" id="mssv" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="phone_number">Số điện thoại</label>
+            <input type="text" name="phone_number" id="phone_number" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="description">Lớp</label>
+            <select name="class_id" id="class_id" class="form-control" required>
+                <option value="">Chọn lớp</option>
+                @foreach ($classes as $class)
+                    <option value="{{$class->id}}">{{$class->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        {{-- <div class="form-group col-md-6">
+            <label for="role">Phân quyền</label>
+            <select id="role" name="role" class="form-control">
+                <option value="1">Admin</option>
+                <option value="2">Đoàn viên</option>
+            </select>
+        </div> --}}
+
+        <div class="form-group col-md-6">
+            <label for="nation">Dân tộc</label>
+            <input type="text" name="nation" id="nation" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="religion">Tôn giáo</label>
+            <input type="text" name="religion" id="religion" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="address">Quê quán</label>
+            <input type="text" name="address" id="address" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="address">Quê quán</label>
+            <input type="text" name="address" id="address" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="day_in">Ngày vào đoàn</label>
+            <input type="date" name="day_in" id="day_in" class="form-control" required>
+        </div>
+
+        
+        <div class="form-group col-md-6">
+            <label for="issuance_date">Ngày cấp</label>
+            <input type="date" name="issuance_date" id="issuance_date" class="form-control" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="entry_place">Nơi vào đoàn</label>
+            <input type="text" name="entry_place" id="entry_place" class="form-control" required>
+        </div>
+
+        
+    </div>
+    <button type="submit" class="btn btn-success">Tạo mới</button>
+</form>
+
+</div>
+
+@endsection
