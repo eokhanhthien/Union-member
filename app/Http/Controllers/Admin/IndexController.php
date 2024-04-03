@@ -8,6 +8,8 @@ use App\Models\UnionMember;
 use App\Models\Background;
 use App\Models\Department;
 use App\Models\Classes;
+use App\Models\Position;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -153,7 +155,8 @@ class IndexController extends Controller
 
     public function createMember(Request $request){
         $classes = Classes::all();
-        return view('admin.member.add',compact('classes'));
+        $positions = Position::all();
+        return view('admin.member.add',compact('classes','positions'));
     }
 
     public function storeMember(Request $request){
@@ -177,7 +180,7 @@ class IndexController extends Controller
         $background->issuance_date = $request->issuance_date;
         $background->class_id = $request->class_id;
         $background->phone_number = $request->phone_number;
-        $background->position_id = 1;
+        $background->position_id = $request->position_id;
 
         $get_image = $request->image;
         $path = 'uploads/';
@@ -196,8 +199,9 @@ class IndexController extends Controller
     public function editMember($id){
         $member = UnionMember::find($id);
         $classes = Classes::get();
+        $positions = Position::all();
         $background = Background::where('union_member_id',$id)->first();
-        return view('admin.member.edit',compact('classes','member','background'));
+        return view('admin.member.edit',compact('classes','member','background','positions'));
     }
 
     public function updateMember(Request $request, $id) {
@@ -258,4 +262,91 @@ class IndexController extends Controller
         return redirect('/member')->with('success', 'Xóa đoàn viên thành công');
     }
     // END Quản lý đoàn viên ========================================================================================================
+
+
+      // START Quản lý chức vụ ========================================================================================================
+      public function position(){
+        $positions = Position::all();
+        return view('admin.position.index', compact('positions'));
+
+    }
+
+    public function createPosition(Request $request){
+        return view('admin.position.add');
+    }
+
+    public function storePosition(Request $request){
+        $department = new Position();
+        $department->name = $request->name;
+        $department->description = $request->description;
+        $department->save();
+        return redirect('/position')->with('success', 'Thêm chức vụ thành công');
+    }
+
+    public function editPosition($id){
+        $position = Position::find($id);
+        return view('admin.position.edit',compact('position'));
+    }
+
+    public function updatePosition(Request $request, $id) {
+        $position = Position::find($id);
+        $position->name = $request->name;
+        $position->description = $request->description;
+        $position->save();
+        return redirect('/position')->with('success', 'Cập nhật chức vụ thành công');
+    }
+
+    public function deletePosition($id){
+        $position = Position::find($id);
+        $position->delete();
+        return redirect('/position')->with('success', 'Xóa chức vụ thành công');
+    }
+    // END Quản lý chức vụ ========================================================================================================
+
+
+    // START Quản lý hoạt động ========================================================================================================
+    public function activity(){
+        $activities = Activity::all();
+        return view('admin.activity.index', compact('activities'));
+
+    }
+
+    public function createActivity(Request $request){
+        return view('admin.activity.add');
+    }
+
+    public function storeActivity(Request $request){
+        $activity = new Activity();
+        $activity->name = $request->name;
+        $activity->description = $request->description;
+        $activity->start_date = $request->start_date;
+        $activity->end_date = $request->end_date;
+        $activity->point = $request->point;
+        $activity->save();
+        return redirect('/activity')->with('success', 'Thêm mới hoạt động thành công');
+    }
+
+    public function editActivity($id){
+        $activity = Activity::find($id);
+        return view('admin.activity.edit',compact('activity'));
+    }
+
+    public function updateActivity(Request $request, $id) {
+        $activity = Activity::find($id);
+        $activity->name = $request->name;
+        $activity->description = $request->description;
+        $activity->start_date = $request->start_date;
+        $activity->end_date = $request->end_date;
+        $activity->point = $request->point;
+        $activity->save();
+        return redirect('/activity')->with('success', 'Cập nhật hoạt động thành công');
+    }
+
+    public function deleteActivity($id){
+        $activity = Activity::find($id);
+        $activity->delete();
+        return redirect('/activity')->with('success', 'Xóa hoạt động thành công');
+    }
+    // END Quản lý hoạt động ========================================================================================================
+
 }

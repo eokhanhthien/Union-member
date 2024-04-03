@@ -53,7 +53,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <img style="width: 50px" src="https://upload.wikimedia.org/wikipedia/vi/0/09/Huy_Hi%E1%BB%87u_%C4%90o%C3%A0n.png" alt="">
                 </div>
                 <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
             </a>
@@ -104,6 +104,19 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#position"
+                    aria-expanded="true" aria-controls="position">
+                    <i class="fa fa-fire" aria-hidden="true"></i>
+                    <span>Chức vụ</span>
+                </a>
+                <div id="position" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('admin.position.index')}}">Danh sách</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#doan_vien"
                     aria-expanded="true" aria-controls="doan_vien">
                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -116,7 +129,19 @@
                 </div>
             </li>
 
-          
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#activity"
+                    aria-expanded="true" aria-controls="activity">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <span>Hoạt động</span>
+                </a>
+                <div id="activity" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('admin.activity.index')}}">Danh sách HĐ</a>
+                    </div>
+                </div>
+            </li>
+
 
 
         </ul>

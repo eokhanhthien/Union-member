@@ -16,8 +16,8 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Đoàn viên</h1>
-        <a href="{{route('admin.member.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
+        <h1 class="h3 mb-0 text-gray-800">Hoạt động</h1>
+        <a href="{{route('admin.activity.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
             Tạo mới</a>
     </div>
 
@@ -28,26 +28,26 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên đoàn viên</th>
-                <th scope="col">Email</th>
-                <th scope="col">MSSV</th>
-                <th scope="col">Lớp</th>
+                <th scope="col">Tên Hoạt động</th>
+                <th scope="col">Chi tiết</th>
+                <th scope="col">Ngày bắt đầu</th>
+                <th scope="col">Ngày kết thúc</th>
                 <th scope="col">Hành động</th>
               </tr>
             </thead>
             <tbody>
-                @foreach ($members as $member)
+                @foreach ($activities as $activity)
               <tr>
                 <th scope="row">{{$loop->index + 1}}</th>
-                <td>{{$member->full_name}}</td>
-                <td>{{ $member->email }}</td>
-                <td>{{ $member->mssv->mssv }}</td>
-                <td>{{ $member->background->classes->name }}</td>
+                <td>{{$activity->name}}</td>
+                <td>{{$activity->description}}</td>
+                <td>{{$activity->start_date}}</td>
+                <td>{{$activity->end_date}}</td>
                 <td>
-                    <a style="text-decoration: none" href="{{route('admin.member.edit', ['id' => $member->id ])}}">
+                    <a style="text-decoration: none" href="{{route('admin.activity.edit', ['id' => $activity->id ])}}">
                         <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
                     </a>
-                    <a style="text-decoration: none" href="{{route('admin.member.delete', ['id' => $member->id ])}}">
+                    <a style="text-decoration: none" href="{{route('admin.activity.delete', ['id' => $activity->id ])}}">
                         <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </a>
                 </td>

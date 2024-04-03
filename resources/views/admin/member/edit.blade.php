@@ -62,6 +62,16 @@
             </select>
         </div>
 
+        <div class="form-group col-md-6">
+            <label for="description">Chức vụ</label>
+            <select name="position_id" id="position_id" class="form-control" required>
+                <option value="">Chọn chức vụ</option>
+                @foreach ($positions as $position)
+                    <option {{ $background->position_id == $position->id ? 'selected' : '' }} value="{{$position->id}}">{{$position->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
         {{-- <div class="form-group col-md-6">
             <label for="role">Phân quyền</label>
             <select id="role" name="role" class="form-control">

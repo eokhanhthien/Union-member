@@ -26,5 +26,8 @@ class Background extends Model
         'phone_number',
     ];
 
-
+    public function classes()
+    {
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
 }

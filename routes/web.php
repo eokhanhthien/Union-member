@@ -49,3 +49,19 @@ Route::post('/store-member', [IndexController::class,'storeMember'])->name('admi
 Route::get('/edit-member/{id}', [IndexController::class,'editMember'])->name('admin.member.edit');
 Route::post('/update-member/{id}', [IndexController::class,'updateMember'])->name('admin.member.update');
 Route::get('/delete-member/{id}', [IndexController::class,'deleteMember'])->name('admin.member.delete');
+
+// Quản lý chức vụ
+Route::get('/position', [IndexController::class,'position'])->name('admin.position.index');
+Route::get('/create-position', [IndexController::class,'createPosition'])->name('admin.position.create');
+Route::post('/store-position', [IndexController::class,'storePosition'])->name('admin.position.store');
+Route::get('/edit-position/{id}', [IndexController::class,'editPosition'])->name('admin.position.edit');
+Route::post('/update-position/{id}', [IndexController::class,'updatePosition'])->name('admin.position.update');
+Route::get('/delete-position/{id}', [IndexController::class,'deletePosition'])->name('admin.position.delete');
+
+// Quản lý hoạt động
+Route::get('/activity', [IndexController::class,'activity'])->name('admin.activity.index');
+Route::get('/create-activity', [IndexController::class,'createActivity'])->name('admin.activity.create');
+Route::post('/store-activity', [IndexController::class,'storeActivity'])->name('admin.activity.store');
+Route::get('/edit-activity/{id}', [IndexController::class,'editActivity'])->name('admin.activity.edit');
+Route::post('/update-activity/{id}', [IndexController::class,'updateActivity'])->name('admin.activity.update');
+Route::get('/delete-activity/{id}', [IndexController::class,'deleteActivity'])->name('admin.activity.delete');
