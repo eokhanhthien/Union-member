@@ -65,3 +65,11 @@ Route::post('/store-activity', [IndexController::class,'storeActivity'])->name('
 Route::get('/edit-activity/{id}', [IndexController::class,'editActivity'])->name('admin.activity.edit');
 Route::post('/update-activity/{id}', [IndexController::class,'updateActivity'])->name('admin.activity.update');
 Route::get('/delete-activity/{id}', [IndexController::class,'deleteActivity'])->name('admin.activity.delete');
+
+// Quản lý nội quy
+Route::get('/rule', [IndexController::class,'rule'])->name('admin.rule.index');
+Route::get('/create-rule', [IndexController::class,'createRule'])->name('admin.rule.create');
+Route::post('/store-rule', [IndexController::class,'storeRule'])->name('admin.rule.store');
+Route::get('/edit-rule/{id}', [IndexController::class,'editRule'])->name('admin.rule.edit');
+Route::post('/update-rule/{id}', [IndexController::class,'updateRule'])->name('admin.rule.update');
+Route::get('/delete-rule/{id}', [IndexController::class,'deleteRule'])->name('admin.rule.delete');

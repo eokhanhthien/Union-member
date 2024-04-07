@@ -10,6 +10,7 @@ use App\Models\Department;
 use App\Models\Classes;
 use App\Models\Position;
 use App\Models\Activity;
+use App\Models\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -348,5 +349,44 @@ class IndexController extends Controller
         return redirect('/activity')->with('success', 'Xóa hoạt động thành công');
     }
     // END Quản lý hoạt động ========================================================================================================
+
+      // START Quản lý khoa ========================================================================================================
+      public function rule(){
+        $rules = Rule::all();
+        return view('admin.rule.index', compact('rules'));
+
+    }
+
+    public function createRule(Request $request){
+        return view('admin.rule.add');
+    }
+
+    public function storeRule(Request $request){
+        $rule = new Rule();
+        $rule->name = $request->name;
+        $rule->content = $request->rule_content;
+        $rule->save();
+        return redirect('/rule')->with('success', 'Thêm mới nội quy thành công');
+    }
+
+    public function editRule($id){
+        $rule = Rule::find($id);
+        return view('admin.rule.edit',compact('rule'));
+    }
+
+    public function updateRule(Request $request, $id) {
+        $department = Rule::find($id);
+        $department->name = $request->name;
+        $department->content = $request->rule_content;
+        $department->save();
+        return redirect('/rule')->with('success', 'Cập nhật nội quy thành công');
+    }
+
+    public function deleteRule($id){
+        $rule = Rule::find($id);
+        $rule->delete();
+        return redirect('/rule')->with('success', 'Xóa nội quy thành công');
+    }
+    // END Quản lý khoa ========================================================================================================
 
 }

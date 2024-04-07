@@ -39,6 +39,7 @@
      <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js" defer></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPDF/1.5.3/jspdf.debug.js" defer></script>
      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+     <script src="https://cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
      
 </head>
 
@@ -138,6 +139,19 @@
                 <div id="activity" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('admin.activity.index')}}">Danh sách HĐ</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#rule"
+                    aria-expanded="true" aria-controls="rule">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>Nội quy</span>
+                </a>
+                <div id="rule" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('admin.rule.index')}}">Danh sách</a>
                     </div>
                 </div>
             </li>
