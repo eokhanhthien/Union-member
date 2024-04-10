@@ -1,14 +1,24 @@
-@extends('layouts.admin')
+@extends('layouts.member')
 @section('content')
+@if(session('success'))
+    <script>
+        toastr.success('{!! html_entity_decode(session('success')) !!}');
+    </script>
+@endif
 
+@if(session('error'))
+    <script>
+        toastr.error('{!! html_entity_decode(session('error')) !!}');
+    </script>
+@endif
 <div class="p-5">
-    <a href="{{route('admin.member.index')}}">
+    <a href="{{route('admin.dashboard.index')}}">
         <button class="btn btn-primary mb-4"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button>
     </a>
 
-<h5>Thêm mới đoàn viên</h5>
+<h5>Thông tin cá nhân</h5>
 
-<form action="{{route('admin.member.update',['id' => $member->id ])}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('member.profile.update')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="form-group col-md-6">

@@ -25,7 +25,9 @@ class IndexController extends Controller
             if (Auth::guard('union_member')->user()->role == 1) {
                 return view('admin.dashboard.index');
             } else {
-                return view('member.dashboard.index');
+                $points = Point::where('member_id',Auth::guard('union_member')->user()->id)->get();
+                $joins = Join::where('member_id',Auth::guard('union_member')->user()->id)->get();
+                return view('member.dashboard.index',compact('joins','points'));
             }
         }
     
@@ -478,5 +480,63 @@ class IndexController extends Controller
     public function memberViewRegisteredActivity($id) {
         $activity = Activity::find($id);
         return view('member.activity.view_registered',compact('activity'));
+    }
+
+    public function editProfile(){
+        $member = UnionMember::find(Auth::guard('union_member')->user()->id);
+        $classes = Classes::get();
+        $positions = Position::all();
+        $background = Background::where('union_member_id',Auth::guard('union_member')->user()->id)->first();
+        return view('member.profile.edit',compact('classes','member','background','positions'));
+    }
+
+    public function updateProfile(Request $request){
+        $unionMember = UnionMember::find(Auth::guard('union_member')->user()->id);
+        $unionMember->full_name = $request->full_name;
+        $unionMember->email = $request->email;
+        if($request->password){
+        $unionMember->password = bcrypt($request->password);
+        }
+        $unionMember->role = 2;
+        $unionMember->save();
+
+        $background = Background::where('union_member_id',Auth::guard('union_member')->user()->id)->first();
+        if(!$background){
+            $background = new Background;
+        }
+            
+        $background->union_member_id = $unionMember->id;
+        $background->mssv = $request->mssv;
+        $background->full_name = $request->full_name;
+        $background->gender = $request->gender;
+        $background->nation = $request->nation;
+        $background->religion = $request->religion;
+        $background->address = $request->address;
+        $background->day_in = $request->day_in;
+        $background->entry_place = $request->entry_place;
+        $background->issuance_date = $request->issuance_date;
+        $background->class_id = $request->class_id;
+        $background->phone_number = $request->phone_number;
+        $background->position_id = 1;
+
+        $get_image = $request->image;
+        if($get_image && $background->image){
+            // Bỏ hình ảnh cũ
+            $path_unlink = 'uploads/'.$background->image;
+            if(file_exists($path_unlink)){
+                unlink($path_unlink);
+            }
+            // Thêm mới
+            $path = 'uploads/';
+            $get_name_image = $get_image-> getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image -> getClientOriginalExtension();
+            $get_image->move($path,$new_image);
+            $background->image = $new_image;
+        }
+
+        $background->save();
+
+        return redirect()->back()->with('success', 'Cập nhật đoàn viên thành công');
     }
 }

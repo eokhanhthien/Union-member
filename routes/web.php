@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\IndexController;
 */
 
 
-
+Route::get('/', [IndexController::class,'login'])->name('admin.login.index');
 Route::get('/login', [IndexController::class,'login'])->name('admin.login.index');
 Route::post('/login', [IndexController::class,'postLogin'])->name('admin.login.post');
 Route::get('/register', [IndexController::class,'register'])->name('admin.register.index');
@@ -91,5 +91,7 @@ Route::get('/member-rule', [IndexController::class,'memberRule'])->name('member.
 Route::get('/member-rule-view/{id}', [IndexController::class,'memberViewRule'])->name('member.rule.view');
 
 Route::get('/member-registered-view/{id}', [IndexController::class,'memberViewRegisteredActivity'])->name('member.registered.activity.view');
+Route::get('/edit-profile', [IndexController::class,'editProfile'])->name('member.profile.edit');
+Route::post('/update-profile', [IndexController::class,'updateProfile'])->name('member.profile.update');
 
 });
