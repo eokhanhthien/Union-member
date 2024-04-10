@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.member')
 @section('content')
 
 @if(session('success'))
@@ -16,9 +16,8 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Đoàn viên</h1>
-        <a href="{{route('admin.member.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
-            Tạo mới</a>
+        <h1 class="h3 mb-0 text-gray-800">Nội quy</h1>
+   
     </div>
 
     <!-- Content Row -->
@@ -28,27 +27,20 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên đoàn viên</th>
-                <th scope="col">Email</th>
-                <th scope="col">MSSV</th>
-                <th scope="col">Lớp</th>
+                <th scope="col">Tên nội quy</th>
+                <th scope="col">Chi tiết</th>
                 <th scope="col">Hành động</th>
               </tr>
             </thead>
             <tbody>
-                @foreach ($members as $member)
+                @foreach ($rules as $rule)
               <tr>
                 <th scope="row">{{$loop->index + 1}}</th>
-                <td>{{$member->full_name}}</td>
-                <td>{{ $member->email }}</td>
-                <td>{{ $member?->background?->mssv }}</td>
-                <td>{{ $member?->background?->classes?->name }}</td>
+                <td>{{$rule->name}}</td>
+                <td>{{$rule->description}}</td>
                 <td>
-                    <a style="text-decoration: none" href="{{route('admin.member.edit', ['id' => $member->id ])}}">
-                        <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                    </a>
-                    <a style="text-decoration: none" href="{{route('admin.member.delete', ['id' => $member->id ])}}">
-                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <a style="text-decoration: none" href="{{route('member.rule.view', ['id' => $rule->id ])}}">
+                        <button class="btn btn-warning">Xem</button>
                     </a>
                 </td>
               </tr>

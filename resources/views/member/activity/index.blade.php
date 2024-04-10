@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.member')
 @section('content')
 
 @if(session('success'))
@@ -17,8 +17,8 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Hoạt động</h1>
-        <a href="{{route('admin.activity.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
-            Tạo mới</a>
+        {{-- <a href="{{route('admin.activity.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
+            Tạo mới</a> --}}
     </div>
 
     <!-- Content Row -->
@@ -44,15 +44,12 @@
                 <td>{{$activity->start_date}}</td>
                 <td>{{$activity->end_date}}</td>
                 <td>
-                    <a style="text-decoration: none" href="{{route('admin.activity.list', ['id' => $activity->id ])}}">
-                        <button class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i></button>
+                    <a style="text-decoration: none" href="{{route('member.activity.view', ['id' => $activity->id ])}}">
+                        <button class="btn btn-warning">Xem</button>
                     </a>
-                    <a style="text-decoration: none" href="{{route('admin.activity.edit', ['id' => $activity->id ])}}">
-                        <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                    </a>
-                    <a style="text-decoration: none" href="{{route('admin.activity.delete', ['id' => $activity->id ])}}">
+                    {{-- <a style="text-decoration: none" href="{{route('admin.activity.delete', ['id' => $activity->id ])}}">
                         <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </a>
+                    </a> --}}
                 </td>
               </tr>
               @endforeach

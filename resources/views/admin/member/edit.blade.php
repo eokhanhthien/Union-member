@@ -15,7 +15,7 @@
             <label for="image">Ảnh đại diện</label>
             <input type="file" name="image" id="image" class="form-control" >
        
-            <img src="{{ asset('uploads/' . $background->image) }}" alt="Ảnh đại diện" style="max-width: 100px;">
+            <img src="{{ asset('uploads/' . $background?->image) }}" alt="Ảnh đại diện" style="max-width: 100px;">
         </div>
 
         <div class="form-group col-md-6">
@@ -44,12 +44,12 @@
 
         <div class="form-group col-md-6">
             <label for="mssv">Mã số sinh viên</label>
-            <input type="text" name="mssv" id="mssv" class="form-control" value="{{$background->mssv}}" required>
+            <input type="text" name="mssv" id="mssv" class="form-control" value="{{$background?->mssv}}" required>
         </div>
 
         <div class="form-group col-md-6">
             <label for="phone_number">Số điện thoại</label>
-            <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{$background->phone_number}}" required>
+            <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{$background?->phone_number}}" required>
         </div>
 
         <div class="form-group col-md-6">
@@ -57,7 +57,7 @@
             <select name="class_id" id="class_id" class="form-control" required>
                 <option value="">Chọn lớp</option>
                 @foreach ($classes as $class)
-                    <option {{ $background->class_id == $class->id ? 'selected' : '' }} value="{{$class->id}}">{{$class->name}}</option>
+                    <option {{ $background?->class_id == $class->id ? 'selected' : '' }} value="{{$class?->id}}">{{$class?->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -67,7 +67,7 @@
             <select name="position_id" id="position_id" class="form-control" required>
                 <option value="">Chọn chức vụ</option>
                 @foreach ($positions as $position)
-                    <option {{ $background->position_id == $position->id ? 'selected' : '' }} value="{{$position->id}}">{{$position->name}}</option>
+                    <option {{ $background?->position_id == $position->id ? 'selected' : '' }} value="{{$position?->id}}">{{$position?->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -82,34 +82,34 @@
 
         <div class="form-group col-md-6">
             <label for="nation">Dân tộc</label>
-            <input type="text" name="nation" id="nation" class="form-control" value="{{$background->nation}}" required>
+            <input type="text" name="nation" id="nation" class="form-control" value="{{$background?->nation}}" required>
         </div>
 
         <div class="form-group col-md-6">
             <label for="religion">Tôn giáo</label>
-            <input type="text" name="religion" id="religion" class="form-control" value="{{$background->religion}}" required>
+            <input type="text" name="religion" id="religion" class="form-control" value="{{$background?->religion}}" required>
         </div>
 
         <div class="form-group col-md-6">
             <label for="address">Quê quán</label>
-            <input type="text" name="address" id="address" class="form-control" value="{{$background->address}}" required>
+            <input type="text" name="address" id="address" class="form-control" value="{{$background?->address}}" required>
         </div>
 
 
         <div class="form-group col-md-6">
             <label for="day_in">Ngày vào đoàn</label>
-            <input type="date" name="day_in" id="day_in" class="form-control" value="{{ $background->day_in ? \Carbon\Carbon::parse($background->day_in)->format('Y-m-d') : '' }}" required>
+            <input type="date" name="day_in" id="day_in" class="form-control" value="{{ $background?->day_in ? \Carbon\Carbon::parse($background->day_in)->format('Y-m-d') : '' }}" required>
         </div>
 
         <div class="form-group col-md-6">
             <label for="issuance_date">Ngày cấp</label>
-            <input type="date" name="issuance_date" id="issuance_date" class="form-control" value="{{ $background->issuance_date ? \Carbon\Carbon::parse($background->issuance_date)->format('Y-m-d') : '' }}" required>
+            <input type="date" name="issuance_date" id="issuance_date" class="form-control" value="{{ $background?->issuance_date ? \Carbon\Carbon::parse($background->issuance_date)->format('Y-m-d') : '' }}" required>
         </div>
         
 
         <div class="form-group col-md-6">
             <label for="entry_place">Nơi vào đoàn</label>
-            <input type="text" name="entry_place" id="entry_place" class="form-control" value="{{$background->entry_place}}" required>
+            <input type="text" name="entry_place" id="entry_place" class="form-control" value="{{$background?->entry_place}}" required>
         </div>
 
         

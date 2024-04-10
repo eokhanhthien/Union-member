@@ -11,6 +11,8 @@ use App\Models\Classes;
 use App\Models\Position;
 use App\Models\Activity;
 use App\Models\Rule;
+use App\Models\Join;
+use App\Models\Point;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +22,11 @@ class IndexController extends Controller
     public function index(){
         if (Auth::guard('union_member')->check()) {
             // Người dùng union_member đã đăng nhập, tiếp tục hiển thị trang dashboard của họ
-            return view('admin.dashboard.index');
+            if (Auth::guard('union_member')->user()->role == 1) {
+                return view('admin.dashboard.index');
+            } else {
+                return view('member.dashboard.index');
+            }
         }
     
         // Nếu không phải union_member hoặc không đăng nhập, chuyển hướng đến trang đăng nhập admin
@@ -37,7 +43,7 @@ class IndexController extends Controller
         $union_member->full_name = $request->full_name;
         $union_member->email = $request->email;
         $union_member->password = bcrypt($request->password);
-        $union_member->role = 1;
+        $union_member->role = 2;
         $union_member->save();
         return redirect()->back();
     }
@@ -216,6 +222,10 @@ class IndexController extends Controller
         $unionMember->save();
 
         $background = Background::where('union_member_id',$id)->first();
+        if(!$background){
+            $background = new Background;
+        }
+            
         $background->union_member_id = $unionMember->id;
         $background->mssv = $request->mssv;
         $background->full_name = $request->full_name;
@@ -231,7 +241,7 @@ class IndexController extends Controller
         $background->position_id = 1;
 
         $get_image = $request->image;
-        if($get_image){
+        if($get_image && $background->image){
             // Bỏ hình ảnh cũ
             $path_unlink = 'uploads/'.$background->image;
             if(file_exists($path_unlink)){
@@ -348,6 +358,42 @@ class IndexController extends Controller
         $activity->delete();
         return redirect('/activity')->with('success', 'Xóa hoạt động thành công');
     }
+
+    public function listActivity($id){
+        $joins = Join::where('activity_id',$id)->get();
+        $activitie = Activity::find($id);
+        return view('admin.activity.list',compact('joins','activitie'));
+    }
+
+    public function changeStatusActivity($id){
+        $join = Join::find($id);
+        if($join->status == 1){
+            $join->status = 0;
+        }else{
+            $join->status = 1;
+        }
+        $join->save();
+        return redirect()->back()->with('success', 'Thay đổi trạng thái hoạt động thành công');
+    }
+
+    public function markActivity($id){
+        $activity = Activity::find($id);
+        $join = Join::where('activity_id',$id)->where('status',1)->get();
+        if(count($join) < 1 ){
+           return redirect()->back()->with('error', 'Danh sách rỗng'); 
+        }
+
+        foreach($join as $key => $item){
+            $point = new Point();
+            $point->member_id = $item->member_id;
+            $point->activity_id = $item->activity_id;
+            $point->point = $activity->point;
+            $point->save();
+        }
+        $activity->status = 1;
+        $activity->save();
+        return redirect()->back()->with('success','Thành công');
+    }
     // END Quản lý hoạt động ========================================================================================================
 
       // START Quản lý khoa ========================================================================================================
@@ -389,4 +435,48 @@ class IndexController extends Controller
     }
     // END Quản lý khoa ========================================================================================================
 
+
+    // Member -------------------------------------------------------------------------------------
+    public function memberActivity(){
+        $activities = Activity::all();
+        return view('member.activity.index', compact('activities'));
+    }
+
+    public function memberViewActivity($id){
+        $activity = Activity::find($id);
+        return view('member.activity.view',compact('activity'));
+    }
+
+    public function registerActivity(Request $request,$id){
+        $Join_current = Join::where('activity_id', $request->activity_id)->where('member_id', Auth::guard('union_member')->user()->id)->first();
+        if($Join_current){
+            return redirect()->back()->with('error', 'Bạn đã đăng ký hoạt động này rồi');
+        }
+        $join = new Join();
+        $join->member_id = Auth::guard('union_member')->user()->id;
+        $join->activity_id = $id;
+        $join->status = 1;
+        $join->save();
+        return redirect()->back()->with('success', 'Đăng ký thành công');
+    }
+
+    public function registeredActivity(){
+        $activities = Join::where('member_id', Auth::guard('union_member')->user()->id)->get();
+        return view('member.activity.registered', compact('activities'));
+    }
+
+    public function memberRule(){
+        $rules = Rule::all();
+        return view('member.rule.index', compact('rules'));
+    }
+
+    public function memberViewRule($id){
+        $rule = Rule::find($id);
+        return view('member.rule.view',compact('rule'));
+    }
+
+    public function memberViewRegisteredActivity($id) {
+        $activity = Activity::find($id);
+        return view('member.activity.view_registered',compact('activity'));
+    }
 }

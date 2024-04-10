@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.member')
 @section('content')
 
 @if(session('success'))
@@ -16,9 +16,9 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Hoạt động</h1>
-        <a href="{{route('admin.activity.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
-            Tạo mới</a>
+        <h1 class="h3 mb-0 text-gray-800">Hoạt động đã đăng ký</h1>
+        {{-- <a href="{{route('admin.activity.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
+            Tạo mới</a> --}}
     </div>
 
     <!-- Content Row -->
@@ -29,9 +29,6 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tên Hoạt động</th>
-                <th scope="col">Chi tiết</th>
-                <th scope="col">Ngày bắt đầu</th>
-                <th scope="col">Ngày kết thúc</th>
                 <th scope="col">Hành động</th>
               </tr>
             </thead>
@@ -39,20 +36,16 @@
                 @foreach ($activities as $activity)
               <tr>
                 <th scope="row">{{$loop->index + 1}}</th>
-                <td>{{$activity->name}}</td>
-                <td>{{$activity->description}}</td>
-                <td>{{$activity->start_date}}</td>
-                <td>{{$activity->end_date}}</td>
                 <td>
-                    <a style="text-decoration: none" href="{{route('admin.activity.list', ['id' => $activity->id ])}}">
-                        <button class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i></button>
+                    {{ \App\Models\Activity::find($activity->activity_id)->name }}
+                </td>
+                <td>
+                    <a style="text-decoration: none" href="{{route('member.registered.activity.view', ['id' => $activity->activity_id ])}}">
+                        <button class="btn btn-warning">Xem</button>
                     </a>
-                    <a style="text-decoration: none" href="{{route('admin.activity.edit', ['id' => $activity->id ])}}">
-                        <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                    </a>
-                    <a style="text-decoration: none" href="{{route('admin.activity.delete', ['id' => $activity->id ])}}">
+                    {{-- <a style="text-decoration: none" href="{{route('admin.activity.delete', ['id' => $activity->id ])}}">
                         <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </a>
+                    </a> --}}
                 </td>
               </tr>
               @endforeach

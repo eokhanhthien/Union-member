@@ -22,9 +22,11 @@ Route::get('/register', [IndexController::class,'register'])->name('admin.regist
 Route::post('/register', [IndexController::class,'postRegister'])->name('admin.register.post');
 Route::get('/logout', [IndexController::class,'logout'])->name('admin.logout');
 
+Route::get('/dashboard', [IndexController::class,'index'])->name('admin.dashboard.index');
+
+Route::middleware('check.admin')->group(function () {
 
 // Quản trị viên
-Route::get('/dashboard', [IndexController::class,'index'])->name('admin.dashboard.index');
 
 // Quản lý khoa
 Route::get('/department', [IndexController::class,'department'])->name('admin.department.index');
@@ -65,6 +67,9 @@ Route::post('/store-activity', [IndexController::class,'storeActivity'])->name('
 Route::get('/edit-activity/{id}', [IndexController::class,'editActivity'])->name('admin.activity.edit');
 Route::post('/update-activity/{id}', [IndexController::class,'updateActivity'])->name('admin.activity.update');
 Route::get('/delete-activity/{id}', [IndexController::class,'deleteActivity'])->name('admin.activity.delete');
+Route::get('/list-activity/{id}', [IndexController::class,'listActivity'])->name('admin.activity.list');
+Route::get('/change-status-activity/{id}', [IndexController::class,'changeStatusActivity'])->name('admin.activity.change.status');
+Route::get('/mark-activity/{id}', [IndexController::class,'markActivity'])->name('admin.activity.mark');
 
 // Quản lý nội quy
 Route::get('/rule', [IndexController::class,'rule'])->name('admin.rule.index');
@@ -73,3 +78,18 @@ Route::post('/store-rule', [IndexController::class,'storeRule'])->name('admin.ru
 Route::get('/edit-rule/{id}', [IndexController::class,'editRule'])->name('admin.rule.edit');
 Route::post('/update-rule/{id}', [IndexController::class,'updateRule'])->name('admin.rule.update');
 Route::get('/delete-rule/{id}', [IndexController::class,'deleteRule'])->name('admin.rule.delete');
+});
+
+Route::middleware('check.union_member_role')->group(function () {
+// Member
+Route::get('/member-dashboard', [IndexController::class,'index'])->name('member.dashboard.index');
+Route::get('/member-activity', [IndexController::class,'memberActivity'])->name('member.activity.index');
+Route::get('/member-activity-view/{id}', [IndexController::class,'memberViewActivity'])->name('member.activity.view');
+Route::get('/register-activity/{id}', [IndexController::class,'registerActivity'])->name('member.activity.register');
+Route::get('/registered-activity', [IndexController::class,'registeredActivity'])->name('member.activity.registered');
+Route::get('/member-rule', [IndexController::class,'memberRule'])->name('member.rule.index');
+Route::get('/member-rule-view/{id}', [IndexController::class,'memberViewRule'])->name('member.rule.view');
+
+Route::get('/member-registered-view/{id}', [IndexController::class,'memberViewRegisteredActivity'])->name('member.registered.activity.view');
+
+});
