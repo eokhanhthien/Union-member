@@ -78,6 +78,11 @@ Route::post('/store-rule', [IndexController::class,'storeRule'])->name('admin.ru
 Route::get('/edit-rule/{id}', [IndexController::class,'editRule'])->name('admin.rule.edit');
 Route::post('/update-rule/{id}', [IndexController::class,'updateRule'])->name('admin.rule.update');
 Route::get('/delete-rule/{id}', [IndexController::class,'deleteRule'])->name('admin.rule.delete');
+
+// yêu cầu rút sổ
+Route::get('/request', [IndexController::class,'request'])->name('admin.request.index');
+Route::get('/accept-request/{id}', [IndexController::class,'acceptRequest'])->name('admin.request.accept');
+
 });
 
 Route::middleware('check.union_member_role')->group(function () {
@@ -93,5 +98,8 @@ Route::get('/member-rule-view/{id}', [IndexController::class,'memberViewRule'])-
 Route::get('/member-registered-view/{id}', [IndexController::class,'memberViewRegisteredActivity'])->name('member.registered.activity.view');
 Route::get('/edit-profile', [IndexController::class,'editProfile'])->name('member.profile.edit');
 Route::post('/update-profile', [IndexController::class,'updateProfile'])->name('member.profile.update');
+
+Route::get('/member-request', [IndexController::class,'memberRequest'])->name('member.request.index');
+Route::get('/member-add-request', [IndexController::class,'addRequest'])->name('member.request.add');
 
 });

@@ -106,6 +106,19 @@
             </li>
 
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#request"
+                    aria-expanded="true" aria-controls="request">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>Yêu cầu rút sổ đoàn</span>
+                </a>
+                <div id="request" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('member.request.index')}}">Danh sách yêu cầu</a>
+                    </div>
+                </div>
+            </li>
+
 
         </ul>
         <!-- End of Sidebar -->

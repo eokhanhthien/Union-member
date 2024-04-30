@@ -12,6 +12,9 @@
     </script>
 @endif
 
+<?php 
+// dd($activity);
+?>
 
 <div class="p-5">
     <a href="{{route('member.activity.index')}}">
@@ -52,8 +55,15 @@
     <div class="card mt-3">
         <div class="card-body">
             <h5 class="card-title">Trạng thái hoạt động</h5>
-            <p class="card-text">Nội dung card hòa thiện</p>
-            <a href="#" class="btn btn-primary">Xem chi tiết</a>
+            @if($activity->status)
+                @if($join->status)
+                    <p class="text-success">Bạn đã tham gia và được cộng điểm</p>
+                @else
+                    <p class="text-danger">Bạn chưa tham gia hoạt động này</p>
+                @endif
+            @else
+                <p class="text-danger">Hoạt động này chưa được chấm.</p>
+            @endif
         </div>
     </div>
 </form>

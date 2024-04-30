@@ -64,7 +64,9 @@
 
 <script>
     $(document).ready( function () {
-        $('#data-table').DataTable();
+        $('#data-table').DataTable({
+        dom: 'Blfrtip',
+        });
     } );
 </script>
 @endsection

@@ -19,5 +19,7 @@ class Activity extends Model
         'status',
     ];
 
+    
+
 
 }

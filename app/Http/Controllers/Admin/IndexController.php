@@ -13,6 +13,7 @@ use App\Models\Activity;
 use App\Models\Rule;
 use App\Models\Join;
 use App\Models\Point;
+use App\Models\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +24,12 @@ class IndexController extends Controller
         if (Auth::guard('union_member')->check()) {
             // Người dùng union_member đã đăng nhập, tiếp tục hiển thị trang dashboard của họ
             if (Auth::guard('union_member')->user()->role == 1) {
-                return view('admin.dashboard.index');
+                $activities = Activity::all();
+                $departments = Department::all();
+                $classes = Classes::all();
+                $positions = Position::all();
+                $members = UnionMember::where('role',2)->get();
+                return view('admin.dashboard.index',compact('activities','departments','classes','positions','members'));
             } else {
                 $points = Point::where('member_id',Auth::guard('union_member')->user()->id)->get();
                 $joins = Join::where('member_id',Auth::guard('union_member')->user()->id)->get();
@@ -437,6 +443,17 @@ class IndexController extends Controller
     }
     // END Quản lý khoa ========================================================================================================
 
+    public function request(){
+        $requests = Requests::all();
+        return view('admin.request.index', compact('requests'));
+    }
+
+    public function acceptRequest($id){
+        $request = Requests::find($id);
+        $request->status = 1;
+        $request->save();
+        return redirect()->back()->with('success', 'Duyệt yêu cầu thành công');
+    }
 
     // Member -------------------------------------------------------------------------------------
     public function memberActivity(){
@@ -472,6 +489,21 @@ class IndexController extends Controller
         return view('member.rule.index', compact('rules'));
     }
 
+    public function memberRequest(){
+        $requests = Requests::where('member_id',Auth::guard('union_member')->user()->id)->get();
+        return view('member.request.index', compact('requests'));
+    }
+
+    public function addRequest(){
+        $request = new Requests();
+        $request->member_id = Auth::guard('union_member')->user()->id;
+        $request->date = date('Y-m-d');
+        $request->status = 0;
+        $request->save();
+
+        return redirect()->back()->with('success', 'Yêu cầu thành công');
+    }
+    
     public function memberViewRule($id){
         $rule = Rule::find($id);
         return view('member.rule.view',compact('rule'));
@@ -479,6 +511,7 @@ class IndexController extends Controller
 
     public function memberViewRegisteredActivity($id) {
         $activity = Activity::find($id);
+        $join = Join::where('activity_id',$id)->where('member_id',Auth::guard('union_member')->user()->id)->first();
         return view('member.activity.view_registered',compact('activity'));
     }
 

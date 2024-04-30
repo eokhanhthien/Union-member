@@ -28,6 +28,7 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">Ảnh</th>
                 <th scope="col">Tên đoàn viên</th>
                 <th scope="col">Email</th>
                 <th scope="col">MSSV</th>
@@ -39,6 +40,9 @@
                 @foreach ($members as $member)
               <tr>
                 <th scope="row">{{$loop->index + 1}}</th>
+                <td>
+                    <img src="{{ asset('uploads/' . $member?->background?->image) }}" alt="Ảnh đại diện" style="max-width: 100px;">
+                </td>
                 <td>{{$member->full_name}}</td>
                 <td>{{ $member->email }}</td>
                 <td>{{ $member?->background?->mssv }}</td>
@@ -64,7 +68,9 @@
 
 <script>
     $(document).ready( function () {
-        $('#data-table').DataTable();
+        $('#data-table').DataTable({
+        dom: 'Blfrtip',
+        });
     } );
 </script>
 @endsection

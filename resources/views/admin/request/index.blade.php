@@ -16,9 +16,9 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Nội quy</h1>
-        <a href="{{route('admin.rule.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
-            Tạo mới</a>
+        <h1 class="h3 mb-0 text-gray-800">Yêu cầu rút sổ đoàn</h1>
+        {{-- <a href="{{route('member.request.add')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i>
+            Yêu cầu</a> --}}
     </div>
 
     <!-- Content Row -->
@@ -28,24 +28,32 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên nội quy</th>
-                <th scope="col">Chi tiết</th>
+                <th scope="col">Người rút</th>
+                <th scope="col">Ngày yêu cầu</th>
+                <th scope="col">Trạng thái</th>
                 <th scope="col">Hành động</th>
               </tr>
+
             </thead>
             <tbody>
-                @foreach ($rules as $rule)
+                @foreach ($requests as $rule)
               <tr>
                 <th scope="row">{{$loop->index + 1}}</th>
-                <td>{{$rule->name}}</td>
-                <td>{{$rule->description}}</td>
+                <td>{{$rule->member->full_name}}</td>
+                <td>{{$rule->date}}</td>
                 <td>
-                    <a style="text-decoration: none" href="{{route('admin.rule.edit', ['id' => $rule->id ])}}">
-                        <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                    @if($rule->status == 1)
+                        <p class="text-success">Đã duyệt</p>
+                    @else
+                        <p class="text-danger">Chưa được duyệt</p>
+                    @endif
+                </td>
+                <td>
+                    @if(!$rule->status)
+                    <a href="{{route('admin.request.accept', ['id' => $rule->id])}}">
+                        <button class="btn btn-success">Duyệt</button>
                     </a>
-                    <a style="text-decoration: none" href="{{route('admin.rule.delete', ['id' => $rule->id ])}}">
-                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </a>
+                    @endif
                 </td>
               </tr>
               @endforeach
