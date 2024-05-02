@@ -83,6 +83,11 @@ Route::get('/delete-rule/{id}', [IndexController::class,'deleteRule'])->name('ad
 Route::get('/request', [IndexController::class,'request'])->name('admin.request.index');
 Route::get('/accept-request/{id}', [IndexController::class,'acceptRequest'])->name('admin.request.accept');
 
+//quỹ đoàn
+Route::get('/fund', [IndexController::class,'fund'])->name('admin.fund.index');
+Route::get('/add-fund', [IndexController::class,'addFund'])->name('admin.fund.add');
+Route::post('/store-fund', [IndexController::class,'storeFund'])->name('admin.fund.store');
+
 });
 
 Route::middleware('check.union_member_role')->group(function () {

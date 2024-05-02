@@ -170,6 +170,20 @@
                 </div>
             </li>
 
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fund"
+                    aria-expanded="true" aria-controls="fund">
+                    <i class="fas fa-money-bill-wave-alt"></i>
+                    <span>Quỹ đoàn</span>
+                </a>
+                <div id="fund" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('admin.fund.index')}}">Danh sách</a>
+                    </div>
+                </div>
+            </li>
+
         </ul>
         <!-- End of Sidebar -->
 

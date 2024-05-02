@@ -14,6 +14,7 @@ use App\Models\Rule;
 use App\Models\Join;
 use App\Models\Point;
 use App\Models\Requests;
+use App\Models\Fund;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -455,6 +456,26 @@ class IndexController extends Controller
         return redirect()->back()->with('success', 'Duyệt yêu cầu thành công');
     }
 
+    public function fund(){
+        $funds = Fund::all();
+        return view('admin.fund.index', compact('funds'));
+    }
+
+    public function addFund(){
+        $members = UnionMember::where('role',2)->get();
+        return view('admin.fund.add',compact('members'));
+    }
+
+    public function storeFund(Request $request){
+        $fund = new Fund();
+        $fund->member_id = $request->member_id;
+        $fund->date = date('Y-m-d');
+        $fund->status = 1;
+        $fund->amount = $request->amount;
+        $fund->note = $request->note;
+        $fund->save();
+        return redirect('/fund')->with('success', 'Thêm mới quỹ thành công');
+    }
     // Member -------------------------------------------------------------------------------------
     public function memberActivity(){
         $activities = Activity::all();
