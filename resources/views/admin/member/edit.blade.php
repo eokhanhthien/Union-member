@@ -6,7 +6,7 @@
         <button class="btn btn-primary mb-4"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button>
     </a>
 
-<h5>Thêm mới đoàn viên</h5>
+<h5>Sửa đoàn viên</h5>
 
 <form action="{{route('admin.member.update',['id' => $member->id ])}}" method="POST" enctype="multipart/form-data">
     @csrf
