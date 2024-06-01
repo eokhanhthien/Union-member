@@ -37,8 +37,8 @@
             <label for="gender">Giới tính</label>
 
             <select id="gender" name="gender" class="form-control">
-                <option value="1" {{ $background->gender == 1 ? 'selected' : '' }}>Nam</option>
-                <option value="0" {{ $background->gender == 0 ? 'selected' : '' }}>Nữ</option>
+                <option value="1" {{ $background?->gender == 1 ? 'selected' : '' }}>Nam</option>
+                <option value="0" {{ $background?->gender == 0 ? 'selected' : '' }}>Nữ</option>
             </select>
         </div>
 

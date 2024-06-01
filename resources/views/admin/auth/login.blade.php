@@ -1,48 +1,63 @@
 <!DOCTYPE html>
+<!-- saved from url=(0063)https://quanlydoanvien.doanthanhnien.vn/login?returnUrl=%2Fhome -->
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
-</head>
-
-<body class="bg-gradient-primary">
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block ">
-                                <img src="https://upload.wikimedia.org/wikipedia/vi/0/09/Huy_Hi%E1%BB%87u_%C4%90o%C3%A0n.png" alt="">
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Đăng nhập</h1>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Đăng nhập</title>
+      <!--<base href="/">-->
+      <base href=".">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" type="image/x-icon" href="https://quanlydoanvien.doanthanhnien.vn/favicon.ico">
+      <script async="" src="./Đăng nhập_files/js"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+      </script>
+      <style>@charset "UTF-8";*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}:before,:after{--tw-content:""}html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-feature-settings:normal}body{margin:0;line-height:inherit}*,:before,:after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }html,body{width:100%;height:100%}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-ms-overflow-style:scrollbar;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;color:#000000d9;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-variant:tabular-nums;line-height:1.5715;background-color:#fff;font-feature-settings:"tnum"}html{--antd-wave-shadow-color:#1890ff;--scroll-bar:0}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}@media print{*,*:before,*:after{color:#000!important;text-shadow:none!important;background:transparent!important;box-shadow:none!important}}*{box-sizing:border-box}*:before,*:after{box-sizing:border-box}html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff}@charset "utf-8";body{font-family:arial;padding-right:0!important}body,html{min-height:100%}body{margin:0;font-family:Roboto,sans-serif!important}@charset "UTF-8";html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}@media print{*,*:before,*:after{color:#000!important;text-shadow:none!important;background:transparent!important;box-shadow:none!important}}*{box-sizing:border-box}*:before,*:after{box-sizing:border-box}html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff}@charset "utf-8";body{font-family:arial;padding-right:0!important}body,html{min-height:100%}</style>
+        <link rel="stylesheet" href="{{ asset('assets/styles.a85d4f4bc86d478a.css')}}">
+<noscript>
+         <link rel="stylesheet" href="styles.a85d4f4bc86d478a.css">
+      </noscript>
+      <style type="text/css"></style>
+      <style type="text/css"></style>
+      <style>.login-page[_ngcontent-rtm-c220]{min-height:100vh!important;position:relative}.login-page[_ngcontent-rtm-c220]:before{content:"";background:transparent url(bg-footer.f47152ab6a1ddfc1.png) repeat-x bottom -10% center!important;position:absolute;inset:0;z-index:1}.logo[_ngcontent-rtm-c220]{flex-grow:1;display:flex;align-items:center}.login-form[_ngcontent-rtm-c220]{flex-grow:2}</style>
+   </head>
+   <body cz-shortcut-listen="true">
+      <app-root _nghost-rtm-c60="" ng-version="15.0.2">
+         <router-outlet _ngcontent-rtm-c60=""></router-outlet>
+         <yum-login _nghost-rtm-c220="" class="ng-star-inserted">
+            <div _ngcontent-rtm-c220="" nz-row="" class="ant-row login-page">
+               <div _ngcontent-rtm-c220="" nz-col="" class="items-center h-screen ant-col ant-col-6" style="z-index: 1; display: flex; flex-direction: column; justify-content: center;">
+                  <div _ngcontent-rtm-c220="" class="logo"><img _ngcontent-rtm-c220="" src="{{asset('assets/yum-logo-2.png')}}"></div>
+                  <div _ngcontent-rtm-c220="" class="w-4/5 login-form">
+                     <nz-tabset _ngcontent-rtm-c220="" nzcentered="" class="ant-tabs ant-tabs-centered ant-tabs-top ant-tabs-default">
+                        <nz-tabs-nav role="tablist" class="ant-tabs-nav ng-star-inserted">
+                           <div class="ant-tabs-nav-wrap">
+                              <div nztabscrolllist="" class="ant-tabs-nav-list" style="transform: translate(0px, 0px);">
+                                 <div class="ant-tabs-tab ant-tabs-tab-active ng-star-inserted">
+                                    <div role="tab" nztabnavitem="" cdkmonitorelementfocus="" class="ant-tabs-tab-btn" tabindex="0" aria-disabled="false" aria-selected="true" aria-controls="nz-tabs-0-tab-0">
+                                       THÔNG TIN ĐĂNG NHẬP<!----><!----><!---->
                                     </div>
-                                    <form action="{{route('admin.login.post')}}" method="post" class="user">
+                                 </div>
+                                 <!----><!---->
+                                 <div nz-tabs-ink-bar="" class="ant-tabs-ink-bar ant-tabs-ink-bar-animated" style="left: 0px; width: 164px;"></div>
+                              </div>
+                           </div>
+                           <nz-tab-nav-operation class="ant-tabs-nav-operations ant-tabs-nav-operations-hidden">
+                              <button nz-dropdown="" type="button" tabindex="-1" aria-hidden="true" nzoverlayclassname="nz-tabs-dropdown" class="ant-dropdown-trigger ant-tabs-nav-more">
+                                 <span nz-icon="" nztype="ellipsis" class="anticon anticon-ellipsis">
+                                    <svg viewBox="64 64 896 896" focusable="false" fill="currentColor" width="1em" height="1em" data-icon="ellipsis" aria-hidden="true">
+                                       <path d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"></path>
+                                    </svg>
+                                 </span>
+                              </button>
+                              <!----><!----><!---->
+                           </nz-tab-nav-operation>
+                           <!---->
+                        </nz-tabs-nav>
+                        <!---->
+                        <form action="{{route('admin.login.post')}}" method="post" class="user">
                                         @csrf
                                         <div class="form-group">
                                             <input name="email" type="email" class="form-control form-control-user"
@@ -66,36 +81,15 @@
                                             <a class="small" href="{{route('admin.register.index')}}">Tạo tài khoản</a>
                                         </div>
                                     </form>
-                                    <hr>
-                                 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                     </nz-tabset>
+                  </div>
+               </div>
+               <div _ngcontent-rtm-c220="" nz-col="" nzspan="18" style="z-index: 0;" class="ant-col ant-col-18 ng-star-inserted"><img _ngcontent-rtm-c220="" src="{{ asset('assets/bg-tnvn.png')}}" alt="background" class="object-cover object-center h-screen w-full"></div>
+               <!---->
             </div>
-
-        </div>
-
-    </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assets/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('assets/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('assets/js/sb-admin-2.min.js')}}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('assets/vendor/chart.js/Chart.min.js')}}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('assets/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{ asset('assets/js/demo/chart-pie-demo.js')}}"></script>
-
-</body>
-
+         </yum-login>
+         <!---->
+      </app-root>
+      <script src="./Đăng nhập_files/polyfills.5d7f6229db27b200.js" type="module"></script><script src="./Đăng nhập_files/main.785f7fdb2a365c9c.js" type="module"></script>
+   </body>
 </html>

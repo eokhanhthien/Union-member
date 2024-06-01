@@ -36,8 +36,8 @@
                 @foreach ($joins as $join)
               <tr>
                 <th scope="row">{{$loop->index + 1}}</th>
-                <td>{{$join->member->full_name}}</td>
-                <td>{{$join->member->background->mssv}}</td>
+                <td>{{$join->member?->full_name}}</td>
+                <td>{{$join->member?->background?->mssv}}</td>
                 <td>
                 @if($activitie->status == null)
                     <a style="text-decoration: none" href="{{route('admin.activity.change.status', ['id' => $join->id ])}}">
